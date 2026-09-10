@@ -1,0 +1,22 @@
+services:
+  sudoku-app:
+    image: sudoku-game:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sudoku-conteneur
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    networks:
+      - sudoku-network
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /usr/share/nginx/html/index.html ]"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+networks:
+  sudoku-network:
+    driver: bridge
