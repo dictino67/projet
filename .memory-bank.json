@@ -1,0 +1,142 @@
+{
+  "skills": {
+    "pylance-python-profiling": {
+      "name": "pylance-python-profiling",
+      "description": "Utilisez ce skill pour profiler du code Python avec Pylance : CPU (Tachyon), trace (sys.monitoring) ou mémoire (Memray). Profilez une exécution complète, une région spécifique entre deux lignes de code, ajoutez des marqueurs de sous-régions, et explorez les profils résultants.",
+      "category": "Python / Performance",
+      "python_version_requirement": "3.15+ pour le CPU profiling (Tachyon)",
+      "tools": {
+        "pylancePythonProfiling": {
+          "description": "Démarrer/arrêter des captures et inspecter les sessions",
+          "actions": [
+            "list",
+            "status",
+            "startCpu",
+            "startCpuRegion",
+            "stopCpu",
+            "startTracing",
+            "stopTracing",
+            "takeHeapSnapshot",
+            "stop",
+            "help"
+          ]
+        },
+        "pylancePythonProfileExplorer": {
+          "description": "Charger un JSON de métadonnées et interroger le profil",
+          "actions": [
+            "loadCpuProfile",
+            "loadTrace",
+            "loadHeapSnapshot",
+            "query"
+          ]
+        }
+      },
+      "backends": {
+        "cpu": "profiling.sampling (Tachyon) - Nécessite Python 3.15+",
+        "trace": "sys.monitoring - Fonctionne depuis Python 3.12+",
+        "memory": "Memray - Non supporté sous Windows"
+      },
+      "usage_scenarios": [
+        "Profiler une exécution complète (mode launch/attach)",
+        "Profiler une région spécifique (startCpuRegion)",
+        "Marqueurs de sous-régions (regionMarkers)",
+        "Trace avec sys.monitoring",
+        "Snapshot Mémoire avec Memray"
+      ],
+      "explorer_views": {
+        "cpu": ["summary", "callTree", "bottomUp", "eventLog", "search", "nodeContext"],
+        "trace": ["summary", "events", "byCategory", "byProcessThread", "timelineSlices", "search"],
+        "heap": ["summary", "allocations", "search"]
+      },
+      "limitations": {
+        "windows": [
+          "Memray non supporté sur Windows",
+          "blocking:true non supporté sur Windows",
+          "Attach/région sur uv venv peut échouer"
+        ],
+        "sampling_rate_saturation": "~500 Hz plafond pratique",
+        "single_thread_views": "Vues CPU récapitulent un seul thread"
+      },
+      "file_path": ".skills/pylance-python-profiling.md",
+      "added_date": "2026-09-10"
+    }
+  },
+  "projects": {
+    "sudoku-game": {
+      "name": "Jeu de Sudoku Web",
+      "description": "Application web interactive permettant de jouer au Sudoku dans un navigateur. L'application génère des grilles aléatoires et offre une interface utilisateur moderne avec thème sombre professionnel.",
+      "category": "Web / Jeu",
+      "technology_stack": {
+        "frontend": ["HTML5", "CSS3", "JavaScript ES6+"],
+        "backend": "Docker + Nginx Alpine"
+      },
+      "files": {
+        "index.html": "Structure HTML principale avec grille 9x9 et contrôles",
+        "style.css": "Design sombre professionnel avec animations (251+ lignes)",
+        "script.js": "Logique du jeu avec class SudokuGame (265 lignes)",
+        "Dockerfile": "Configuration Docker multi-stage pour nginx alpine",
+        "nginx.conf": "Configuration serveur web sur port 8088",
+        "AGENT.md": "Documentation complète du projet"
+      },
+      "features": [
+        "Génération aléatoire de grilles Sudoku valides",
+        "Difficulté variable (30-59 cases vides)",
+        "Interaction par clic/souris et clavier",
+        "Pavé numérique tactile",
+        "Vérification des réponses avec feedback visuel",
+        "Détection automatique de victoire"
+      ],
+      "design": {
+        "theme": "Dark/Professionnel",
+        "colors": {
+          "background": "Dégradé #1a1a2e → #0f3460 (violet nuit)",
+          "container": "Dégradé #1e1e2e avec effet verre dépoli",
+          "primary": "#4c1d95 → #7c3aed (violet)",
+          "success": "#10b981 → #d1fae5 (vert)",
+          "error": "#cf4444 → #fecaca (rouge)"
+        },
+        "animations": [
+          "Container Fade-In (0.8s)",
+          "Title Float (2s infini)",
+          "Cell Hover & Selection Glow",
+          "Error Pulse Animation",
+          "Correct Glow Effect",
+          "Button 3D Hover Effects"
+        ]
+      },
+      "docker": {
+        "image": "sudoku-game:v5",
+        "container": "sudoku-server",
+        "port": 8088,
+        "base_image": "nginx:alpine"
+      },
+      "bugs_fixed": [
+        {
+          "issue": "Cases vides marquées comme 'fixed' (non modifiables)",
+          "fix": "Correction de displayBoard() pour ne marquer que les cases avec valeurs originales comme fixed",
+          "date": "2026-09-10"
+        }
+      ],
+      "version_history": [
+        {
+          "version": "v1-v3",
+          "description": "Version initiale avec interface basique claire"
+        },
+        {
+          "version": "v4",
+          "description": "Correction bug cases vides non modifiables"
+        },
+        {
+          "version": "v5",
+          "description": "Nouveau design professionnel sombre avec animations",
+          "date": "2026-09-10"
+        }
+      ],
+      "access_url": "http://localhost:8088",
+      "status": "En production",
+      "created_date": "2026-09-10",
+      "last_updated": "2026-09-10T12:04:09Z"
+    }
+  },
+  "last_updated": "2026-09-10T12:04:09Z"
+}

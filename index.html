@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Sudoku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Sudoku</h1>
+        
+        <div class="game-info">
+            <div id="message" class="message"></div>
+        </div>
+        
+        <div class="sudoku-board" id="board"></div>
+        
+        <div class="controls">
+            <div class="numpad">
+                <button data-num="1">1</button>
+                <button data-num="2">2</button>
+                <button data-num="3">3</button>
+                <button data-num="4">4</button>
+                <button data-num="5">5</button>
+                <button data-num="6">6</button>
+                <button data-num="7">7</button>
+                <button data-num="8">8</button>
+                <button data-num="9">9</button>
+                <button data-num="0">⌫</button>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button id="new-game-btn" class="btn btn-primary">Nouvelle Partie</button>
+            <button id="check-btn" class="btn btn-secondary">Vérifier</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
